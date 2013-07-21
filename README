@@ -12,12 +12,11 @@ SYNOPSIS
         
             print "Color is ".$color->name."\n";
         
-        
             #The following raises an exception, because addition isn't defined for Atom objects.
-            $color + 1;
+            $color + 1; 
 
 DESCRIPTION
-    Unlike constants declared with "constant", Atoms are not associated with
+    Unlike constants declared with `constant', Atoms are not associated with
     any specific scalar value. Instead, Atoms have their own independent
     identity, and will only compare positively (via the 'eq' test) with
     other identical Atoms. All other operations on Atoms are undefined,
@@ -90,7 +89,7 @@ COMPARISON TO ALTERNATIVES
 
                     use Storable qw (freeze thaw);
                     print "Just as we thought!" if myatom eq thaw(freeze(myatom));
-
+                
 ATOMS AS STRINGS
     An atom cast (stringified) into a string produces a representation that
     may be useful for debugging purposes:
@@ -119,28 +118,31 @@ ATOMS AS STRINGS
     C:\test7.pl line 5
 
 OTHER METHODS
-    "name"
+    `name'
                 package Languages;
                 use constant::Atom qw (English);
                 my $language = English;
         
                 #Get the name of the constant
                 print "Language: ".English->name."\n";
-
+        
         Output: English
 
-    "fullname"
+    `fullname'
                 package Languages;
                 use constant::Atom qw (English);
                 my $language = English;
         
                 #Get the string-representation of the constant, which is simply the fully-qualified symbol name.
                 "$language" eq $language->fullname or die "These should be the same.";
-
+        
         Output: Languages::English
 
 SEE ALSO
-    "constant"
+    `constant'
+
+REPOSITORY
+    https://github.com/neilbowers/constant-Atom
 
 AUTHOR
     This module was originally created by Jonathan R. Warden
@@ -152,14 +154,4 @@ COPYRIGHT
 
     This library is free software; you can redistribute it and/or modify it
     under the same terms as Perl itself.
-
-POD ERRORS
-    Hey! The above document had some coding errors, which are explained
-    below:
-
-    Around line 206:
-        '=item' outside of any '=over'
-
-    Around line 228:
-        You forgot a '=back' before '=head1'
 

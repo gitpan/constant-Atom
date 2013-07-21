@@ -1,10 +1,11 @@
 {
    "abstract" : "unique symbols",
    "author" : [
-      "This module was originally created by Jonathan R. Warden E<lt>john@newchester.comE<gt>,\nbut is currently being maintained by Neil Bowers E<lt>neilb@cpan.orgE<gt>."
+      "This module was originally created by Jonathan R. Warden E<lt>john@newchester.comE<gt>,",
+      "but is currently being maintained by Neil Bowers E<lt>neilb@cpan.orgE<gt>."
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.112150",
+   "generated_by" : "Module::Build version 0.4005, CPAN::Meta::Converter version 2.131560",
    "license" : [
       "perl_5"
    ],
@@ -16,14 +17,14 @@
    "prereqs" : {
       "configure" : {
          "requires" : {
-            "Module::Build" : "0.38"
+            "Module::Build" : "0.40"
          }
       }
    },
    "provides" : {
       "constant::Atom" : {
          "file" : "lib/constant/Atom.pm",
-         "version" : "0.02"
+         "version" : "0.03"
       },
       "constant::Atom::Strict" : {
          "file" : "lib/constant/Atom/Strict.pm",
@@ -36,5 +37,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.02"
+   "version" : "0.03"
 }
