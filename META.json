@@ -24,7 +24,7 @@
    "provides" : {
       "constant::Atom" : {
          "file" : "lib/constant/Atom.pm",
-         "version" : "0.03"
+         "version" : "0.04"
       },
       "constant::Atom::Strict" : {
          "file" : "lib/constant/Atom/Strict.pm",
@@ -37,5 +37,5 @@
          "http://dev.perl.org/licenses/"
       ]
    },
-   "version" : "0.03"
+   "version" : "0.04"
 }

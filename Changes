@@ -1,5 +1,10 @@
 Revision history for perl module constant::Atom
 
+0.04 2013-07-21
+
+    - Removed the auto generated meta files from the repo and MANIFEST
+    - Tidied up pod errors
+
 0.03 2013-07-21
 
     - github repo now mentioned in the pod

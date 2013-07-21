@@ -2,8 +2,8 @@ lib/constant/Atom.pm
 lib/constant/Atom/Strict.pm
 test.pl
 Build.PL
-META.yml
 MANIFEST
 Changes
 README
+META.yml
 META.json
