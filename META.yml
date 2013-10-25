@@ -16,11 +16,11 @@ name: constant-Atom
 provides:
   constant::Atom:
     file: lib/constant/Atom.pm
-    version: 0.05
+    version: 0.06
   constant::Atom::Strict:
     file: lib/constant/Atom/Strict.pm
-    version: 0.011
+    version: 0.06
 resources:
   license: http://dev.perl.org/licenses/
   repository: https://github.com/neilbowers/constant-Atom
-version: 0.05
+version: 0.06

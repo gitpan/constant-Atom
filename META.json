@@ -24,11 +24,11 @@
    "provides" : {
       "constant::Atom" : {
          "file" : "lib/constant/Atom.pm",
-         "version" : "0.05"
+         "version" : "0.06"
       },
       "constant::Atom::Strict" : {
          "file" : "lib/constant/Atom/Strict.pm",
-         "version" : "0.011"
+         "version" : "0.06"
       }
    },
    "release_status" : "stable",
@@ -40,5 +40,5 @@
          "url" : "https://github.com/neilbowers/constant-Atom"
       }
    },
-   "version" : "0.05"
+   "version" : "0.06"
 }
