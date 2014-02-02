@@ -1,26 +1,28 @@
 ---
 abstract: 'unique symbols'
 author:
-  - 'This module was originally created by Jonathan R. Warden E<lt>john@newchester.comE<gt>,'
-  - 'but is currently being maintained by Neil Bowers E<lt>neilb@cpan.orgE<gt>.'
-build_requires: {}
+  - 'Neil Bowers <neil@bowers.com>'
+build_requires:
+  Data::Dumper: 0
+  Storable: 0
+  Test::More: 0
 configure_requires:
-  Module::Build: 0.40
-dynamic_config: 1
-generated_by: 'Module::Build version 0.4007, CPAN::Meta::Converter version 2.132620'
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 5.008, CPAN::Meta::Converter version 2.133380'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: constant-Atom
-provides:
-  constant::Atom:
-    file: lib/constant/Atom.pm
-    version: 0.06
-  constant::Atom::Strict:
-    file: lib/constant/Atom/Strict.pm
-    version: 0.06
+requires:
+  Carp: 0
+  base: 0
+  overload: 0
+  perl: 5.006
+  strict: 0
+  warnings: 0
 resources:
-  license: http://dev.perl.org/licenses/
-  repository: https://github.com/neilbowers/constant-Atom
-version: 0.06
+  homepage: https://github.com/neilbowers/constant-Atom
+  repository: https://github.com/neilbowers/constant-Atom.git
+version: 0.07
