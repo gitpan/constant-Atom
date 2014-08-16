@@ -3,90 +3,88 @@ package constant::Atom;
 use 5.006;
 use strict;
 use warnings;
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 use Carp;
 sub new {
-	my($pkg, $client_package, $name) = @_;
+    my($pkg, $client_package, $name) = @_;
 
-	croak if not defined $name or not defined $client_package;	
-	my $string = $client_package."::".$name;
-	my $self = bless \$string, $pkg;
-	return $self;
+    croak if not defined $name or not defined $client_package;
+    my $string = $client_package."::".$name;
+    my $self = bless \$string, $pkg;
+    return $self;
 }
 
 use overload
-	'==' => 'equals',
-	'eq' => 'equals',
-	'!=' => 'notequals',
-	'ne' => 'notequals',
+    '==' => 'equals',
+    'eq' => 'equals',
+    '!=' => 'notequals',
+    'ne' => 'notequals',
 
-	#I've decided that both numeric and string equality operators should be allowed.
-#	'==' => sub {my $class = ref(shift); croak "'==' operator isn't defined for $class objects.  Did you mean 'eq'?"},
-#	'!=' => sub {my $class = ref(shift); croak "'!=' operator isn't defined for $class objects.  Did you mean 'ne'?"},
-	
-	nomethod => sub {
-		my($a, $b, $c, $operator) = @_;
-		my $class = ref($a);
-		croak "The '$operator' operation isn't defined for $class objects";
-	},
-	'""' =>  'tostring'
+    #I've decided that both numeric and string equality operators should be allowed.
+    # '==' => sub {my $class = ref(shift); croak "'==' operator isn't defined for $class objects.  Did you mean 'eq'?"},
+    # '!=' => sub {my $class = ref(shift); croak "'!=' operator isn't defined for $class objects.  Did you mean 'ne'?"},
+
+    nomethod => sub {
+        my($a, $b, $c, $operator) = @_;
+        my $class = ref($a);
+        croak "The '$operator' operation isn't defined for $class objects";
+    },
+    '""' =>  'tostring'
 ;
 
 sub tostring {
-	my($self) = @_;
-	
-	if(not defined $self) {
-		croak "tostring should be called on an atom";
-	}
-	return overload::StrVal($self).'='.$$self;
-	
+    my($self) = @_;
+
+    if (not defined $self) {
+        croak "tostring should be called on an atom";
+    }
+    return overload::StrVal($self).'='.$$self;
 }
 
 sub equals {
-	ref($_[1]) eq ref($_[0]) and ${$_[0]} eq ${$_[1]}
+    ref($_[1]) eq ref($_[0]) and ${$_[0]} eq ${$_[1]}
 };
 
 sub notequals {
-	not (ref($_[1]) eq ref($_[0]) and ${$_[0]} eq ${$_[1]})
+    not (ref($_[1]) eq ref($_[0]) and ${$_[0]} eq ${$_[1]})
 };
 
 sub name {
-	my($self) = @_;
-	my @parts = split /\:\:/, $$self;	
-	return $parts[-1];
+    my($self) = @_;
+    my @parts = split /\:\:/, $$self;
+    return $parts[-1];
 }
 
 sub fullname {
-	my($self) = @_;
-	return $$self;
+    my($self) = @_;
+    return $$self;
 }
 
-	
-sub make_identifier {
-	my($pkg, $client_package, $name) = @_;
-	
-	my $id = $pkg->new($client_package, $name);
 
-	no strict 'refs';
-	
-	my $full_name = $client_package."::".$name;
-	
-	*$full_name = sub () {
-		#$pkg->new($client_package, $name);
-		$id;
-	};
+sub make_identifier {
+    my($pkg, $client_package, $name) = @_;
+    my $id = $pkg->new($client_package, $name);
+
+    no strict 'refs';
+
+    my $full_name = $client_package."::".$name;
+
+    *$full_name = sub () {
+        #$pkg->new($client_package, $name);
+        $id;
+    };
 }
 
 sub import {
-	my($pkg, @names) = @_;
-	
-    return unless $pkg;			# Ignore 'use constant;'
-	
-	my $client_package = caller(0);
-	for(@names) {
-		$pkg->make_identifier($client_package, $_);
-	}
+    my($pkg, @names) = @_;
+
+    return unless $pkg;     # Ignore 'use constant;'
+
+    my $client_package = caller(0);
+    for (@names) {
+        $pkg->make_identifier($client_package, $_);
+    }
 }
 
 
@@ -96,43 +94,53 @@ __END__
 
 =head1 NAME
 
-constant::Atom - unique symbols
+constant::Atom - define unique symbols (constant functions with opaque values)
 
 =head1 SYNOPSIS
 
-	use constant::Atom qw (red yellow blue);
-	
-	my $color = red;
-	
-	print "Just as we thought!\n" if $color eq red;
-	print "This will never happen.\n" if $color eq blue;
-	print "Atoms never equal strings!\n" if $color eq 'red';
-	
-	print "Color is ".$color->name."\n";
-	
-	
-	#The following raises an exception, because addition isn't defined for Atom objects.
-	$color + 1; 
-
-
+ use constant::Atom qw/ red yellow blue /;
+ 
+ my $color = red;
+ 
+ print "Just as we thought!\n"        if $color eq red;
+ print "This will never happen.\n"    if $color eq blue;
+ print "Atoms never equal strings!\n" if $color eq 'red';
+ 
+ print "Color is ".$color->name."\n";
+ 
+ # The following raises an exception,
+ # because addition isn't defined for Atom objects.
+ $color + 1; 
 
 =head1 DESCRIPTION
 
-Unlike constants declared with C<constant>, Atoms are not associated with any specific scalar value.
-Instead, Atoms have their own independent identity, and will only compare positively (via the 'eq' test)
-with other identical Atoms.
-All other operations on Atoms are undefined, including casting to a string and casting to a number.
+This module is used to declare 'function constants', similar to those
+created with L<constant> and L<enum>, but with a key difference:
+you don't specify a value for the constants, and you should use it in
+situations where you don't need to know the value.
 
-Atoms are used in place of constants in situations where a unique value is needed to represent
-some idea or program state, but where that value is not naturally associated with a scalar value,
+Atoms have their own independent identity,
+and will only compare positively (via the 'eq' test)
+with other identical Atoms.
+All other operations on Atoms are undefined,
+including casting to a string and casting to a number.
+
+Atoms are used in place of constants in situations where a unique value
+is needed to represent some idea or program state,
+but where that value is not naturally associated with a scalar value,
 and shouldn't be confused with one.
-Atoms are similar to C enums in this respect, except that Atoms do not have an ordinal value.
+Atoms are similar to C enums in this respect,
+except that Atoms do not have an ordinal value.
+
+For example, you might use L<constant> or L<enum> where you want to
+define constants that are used to index an array.
+C<constant::Atom> can't be used in such situations.
 
 Below is an example of where an Atom would solve a problem:
 
  # use constant::Atom 'error';
    use constant 'error' => 999999;
-	
+    
    sub bar {
        my($arg) = @_;
  
@@ -249,7 +257,15 @@ Output: Languages::English
 
 =head1 SEE ALSO
 
-L<constant>, L<enum>, L<Const::Fast>, L<Constant::Generate>.
+L<constant> is a core module used to declare 'function constants', where you specify the value.
+
+L<enum> is used to define a number of function constants where you want them to have sequential values,
+like C's enumerated type.
+
+L<Const::Fast> lets you create immutable variables, which act like constants, but can be inlined in strings etc,
+where function constants can't.
+
+There are L<plenty of other constant modules|http://neilb.org/reviews/constants.html> on CPAN.
 
 =head1 REPOSITORY
 
@@ -267,5 +283,5 @@ Copyright 2004 Jonathan R. Warden. All rights reserved.
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
-=cut	
+=cut
 
