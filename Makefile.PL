@@ -21,8 +21,8 @@ my %WriteMakefileArgs = (
   "NAME" => "constant::Atom",
   "PREREQ_PM" => {
     "Carp" => 0,
-    "base" => 0,
     "overload" => 0,
+    "parent" => 0,
     "strict" => 0,
     "warnings" => 0
   },
@@ -31,7 +31,7 @@ my %WriteMakefileArgs = (
     "Storable" => 0,
     "Test::More" => 0
   },
-  "VERSION" => "0.08",
+  "VERSION" => "0.09",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -43,8 +43,8 @@ my %FallbackPrereqs = (
   "Data::Dumper" => 0,
   "Storable" => 0,
   "Test::More" => 0,
-  "base" => 0,
   "overload" => 0,
+  "parent" => 0,
   "strict" => 0,
   "warnings" => 0
 );

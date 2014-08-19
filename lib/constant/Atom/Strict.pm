@@ -1,13 +1,12 @@
 package constant::Atom::Strict;
-
+$constant::Atom::Strict::VERSION = '0.09';
 use 5.006;
 use strict;
 use warnings;
-our $VERSION = '0.07';
 
+use parent 'constant::Atom';
 use Carp;
 
-use base 'constant::Atom';
 
 sub tostring {
 	my($self) = @_;

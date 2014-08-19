@@ -17,14 +17,14 @@ meta-spec:
 name: constant-Atom
 requires:
   Carp: '0'
-  base: '0'
   overload: '0'
+  parent: '0'
   perl: '5.006'
   strict: '0'
   warnings: '0'
 resources:
   homepage: https://github.com/neilbowers/constant-Atom
   repository: https://github.com/neilbowers/constant-Atom.git
-version: '0.08'
+version: '0.09'
 x_adopted_by:
   NEILB: 2014-01-12
