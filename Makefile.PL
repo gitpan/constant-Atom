@@ -29,9 +29,9 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "Data::Dumper" => 0,
     "Storable" => 0,
-    "Test::More" => 0
+    "Test::More" => "0.88"
   },
-  "VERSION" => "0.09",
+  "VERSION" => "0.10",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -42,7 +42,7 @@ my %FallbackPrereqs = (
   "Carp" => 0,
   "Data::Dumper" => 0,
   "Storable" => 0,
-  "Test::More" => 0,
+  "Test::More" => "0.88",
   "overload" => 0,
   "parent" => 0,
   "strict" => 0,

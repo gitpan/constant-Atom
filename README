@@ -1,7 +1,7 @@
 
 
 This archive contains the distribution constant-Atom,
-version 0.09:
+version 0.10:
 
   define unique symbols (constant functions with opaque values)
 

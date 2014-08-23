@@ -5,7 +5,7 @@ author:
 build_requires:
   Data::Dumper: '0'
   Storable: '0'
-  Test::More: '0'
+  Test::More: '0.88'
 configure_requires:
   ExtUtils::MakeMaker: '0'
 dynamic_config: 0
@@ -25,6 +25,6 @@ requires:
 resources:
   homepage: https://github.com/neilbowers/constant-Atom
   repository: https://github.com/neilbowers/constant-Atom.git
-version: '0.09'
+version: '0.10'
 x_adopted_by:
   NEILB: 2014-01-12

@@ -1,9 +1,8 @@
 package constant::Atom;
-
+$constant::Atom::VERSION = '0.10';
 use 5.006;
 use strict;
 use warnings;
-our $VERSION = '0.08';
 
 use Carp;
 sub new {
@@ -70,10 +69,7 @@ sub make_identifier {
 
     my $full_name = $client_package."::".$name;
 
-    *$full_name = sub () {
-        #$pkg->new($client_package, $name);
-        $id;
-    };
+    *$full_name = sub () { $id; };
 }
 
 sub import {

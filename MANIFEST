@@ -8,4 +8,5 @@ README
 dist.ini
 lib/constant/Atom.pm
 lib/constant/Atom/Strict.pm
+t/02-failure-cases.t
 t/original.t
